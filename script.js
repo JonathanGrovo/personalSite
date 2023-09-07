@@ -1,16 +1,22 @@
 // setup
 let canvas = document.getElementById('canvas1');
 // let canvas = document.getElementById('canvas1');
+
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 // canvas.height = window.innerHeight;
 console.log(ctx);
-const gradient = ctx.createLinearGradient(canvas.width / 2, 0, canvas.width / 2, canvas.height);
+let gradient = ctx.createLinearGradient(canvas.width / 2, 0, canvas.width / 2, canvas.height);
+// const gradient = ctx.createLinearGradient(canvas.width / 2, 0, canvas.width / 2, canvas.height);
+
 gradient.addColorStop(0, 'rgba(200, 200, 1, 1)');
 gradient.addColorStop(0.5, 'rgba(0, 300, 128, 1)');
 gradient.addColorStop(0.7, 'rgba(100, 210, 210, 1)');
 gradient.addColorStop(1, 'rgba(100, 210, 210, 0)');
+
+// gradient.addColorStop(0, 'white');
+// gradient.addColorStop(1, 'red');
 ctx.fillStyle = gradient;
 // ctx.strokeStyle = 'hsl(100, 100%, 50%)';
 
@@ -18,12 +24,33 @@ ctx.strokeStyle = gradient;
 
 // handles window resizing
 function resizeCanvas() {
+    // canvas width and height are set to new window width and height
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    //effect.width = canvas.width;
-    //effect.height = canvas.height;
+    //gradient = ctx.createLinearGradient(canvas.width / 2, 0, canvas.width / 2, canvas.height);
+
+    // recreate canvas gradiewnt
+    gradient = ctx.createLinearGradient(canvas.width / 2, 0, canvas.width / 2, canvas.height);
+    // recreate gradient stop values
+    gradient.addColorStop(0, 'rgba(200, 200, 1, 1)');
+    gradient.addColorStop(0.5, 'rgba(0, 300, 128, 1)');
+    gradient.addColorStop(0.7, 'rgba(100, 210, 210, 1)');
+    gradient.addColorStop(1, 'rgba(100, 210, 210, 0)');
+
+    // gradient.addColorStop(0, 'white');
+    // gradient.addColorStop(1, 'red');
+
+    // reset where effect takes place
+    effect.width = canvas.width;
+    effect.height = canvas.height;
+
+    // color of dots and lines set back to original colors
+    ctx.fillStyle = gradient;
+    ctx.strokeStyle = gradient;
+    //
 }
 
+//listens for window resize event
 window.addEventListener('resize', () => {
     resizeCanvas();
 })
@@ -34,7 +61,7 @@ class Particle {
         this.radius = Math.random() * 3 + 1;
         this.x = this.radius + Math.random() * (this.effect.width - this.radius * 2);
         // this.x = Math.random() * this.effect.width;
-        this.y = Math.random() * this.effect.height;
+        // this.y = Math.random() * this.effect.height;
         this.y = this.radius + Math.random() * (this.effect.height - this.radius * 2);
         this.vx = (Math.random() * 1 - 0.5) * 0.5;
         this.vy = (Math.random() * 1 - 0.5) * 0.5;
