@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#canvas1 {
+  background: linear-gradient(rgb(28, 115, 228) 0%, rgb(0, 10, 70) 70%);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+.newdiv {
+  padding-top: 10px;
+  color: black;
+  z-index: 1;
+}
